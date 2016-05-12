@@ -69,6 +69,12 @@
     [queue addOperation:op2];
     [queue addOperation:op3];
     
+    //设置线程挂起
+    [queue setSuspended:YES];
+    //模拟恢复执行
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [queue setSuspended:NO];
+    });
     
 }
 
